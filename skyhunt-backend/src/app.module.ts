@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
-import { GptService } from './api/gpt.service';
-import { GptController } from './api/gpt.controller';
-import { PhotoController } from './api/photo.controller';
+import { AuthModule } from './auth/auth.module';
+import { GameModule } from './game/game.module';
 
 @Module({
-  imports: [],
-  controllers: [GptController, PhotoController],
-  providers: [GptService],
+  imports: [AuthModule, GameModule],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

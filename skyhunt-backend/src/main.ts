@@ -1,20 +1,19 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import * as dotenv from 'dotenv';
+import { ValidationPipe } from '@nestjs/common';
+import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
-  // Load environment variables
-  dotenv.config();
-
   const app = await NestFactory.create(AppModule);
+  app.useGlobalPipes(new ValidationPipe());
+  app.use(cookieParser());
 
-  // Enable CORS for frontend requests (allow all for dev)
   app.enableCors({
-    origin: '*', // In production, replace with your frontend domain
+    origin: '*',
     credentials: true,
   });
 
-  const port = process.env.PORT || 3000;
+  const port = 3000;
   await app.listen(port);
   console.log(`🚀 Backend running at http://localhost:${port}`);
 }
