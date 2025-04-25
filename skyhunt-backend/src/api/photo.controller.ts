@@ -37,6 +37,7 @@ export class PhotoController {
   async uploadFile(
     @UploadedFile() file: Express.Multer.File,
     @Body() body: { username: string; challenge: string },
+    
   ) {
     try {
       const imagePath = `./uploads/${file.filename}`;
