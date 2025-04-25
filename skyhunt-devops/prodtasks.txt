@@ -1,0 +1,4 @@
+1. Replace AWS credentials in backend with IAM role provisioned with terraform
+2. Replace cors origin to frontend url setup with route 53
+3. Set up CloudWatch alarms for monitoring backend and frontend services
+4. Automate SSL certificate renewal using AWS Certificate Manager

@@ -1,0 +1,6 @@
+column: id       (string)  - google id of user
+column: username (string)  - username of user
+column: image    (string)  - url of user icon
+column: points   (number)  - number of points user has
+column: prompt   (string)  - current prompt that user has to fulfill
+column: updated  (number)  - Date.now() value for rate limiting
