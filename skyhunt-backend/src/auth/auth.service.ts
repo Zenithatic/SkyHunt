@@ -33,7 +33,7 @@ export class AuthService {
    * @returns A promise that resolves when the message is successfully sent to the Discord webhook.
    */
   async logGoogleLogin(user: GoogleUser): Promise<any> {
-    await fetch('https://discord.com/api/webhooks/1363920802809909365/8pTltwtt2VmioR3_5b27-5KC1VIoBM0hhbZS6EGcWAZk1sCOeTjB2QxbhgLzIK6hM76P', {
+    await fetch(process.env.DISCORD_WEBHOOK_URL!, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -124,6 +124,11 @@ export class AuthService {
       await this.dbclient.send(command);
       return 0;
     } catch (error) {
+      if (error.name === 'ConditionalCheckFailedException') {
+        // User already exists
+        return 0;
+      }
+      // Handle other errors (e.g., network issues, permission errors)
       console.error('Error adding user:', error);
       return -1;
     }
